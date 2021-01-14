@@ -259,6 +259,11 @@ SettingsProcessor::fillAeInputParams(const CameraMetadata *settings,
         iso_max = rw_entry.data.i32[1];
         aeParams->max_analog_gain = (double)iso_max / 100;
         LOGD("iso_max %f",aeParams->max_analog_gain);
+    } else {
+        iso_min = 100;
+        iso_max = 1600;
+        aeParams->max_analog_gain = (double)iso_max / 100;
+        LOGE("ISO range is not set! Using default: %d - %d", iso_min, iso_max);
     }
     /*
      * MANUAL AE CONTROL
